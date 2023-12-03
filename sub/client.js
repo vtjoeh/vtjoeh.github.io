@@ -70,6 +70,7 @@ yellowButton.addEventListener('click', async function(e) {
 //Xapi Command to set the LedControl Color to Red
 const redButton = document.getElementById('redButton');
 redButton.addEventListener('click', async function(e) {
+	console.log('Purple Button Pushed'); 
    try {
 	   //Example of an xapi xCommand
 		xapi.Command.UserInterface.LedControl.Color.Set({ Color: 'Red' });
@@ -81,6 +82,7 @@ redButton.addEventListener('click', async function(e) {
 //Xapi Command to set the LedControl Color to Blue
 const blueButton = document.getElementById('blueButton');
 blueButton.addEventListener('click', async function(e) {
+
    try {
 	   //Example of an xapi xCommand
 		xapi.Command.UserInterface.LedControl.Color.Set({ Color: 'Blue' });
@@ -92,6 +94,7 @@ blueButton.addEventListener('click', async function(e) {
 //Xapi Command to set the LedControl Color to Purple
 const purpleButton = document.getElementById('purpleButton');
 purpleButton.addEventListener('click', async function(e) {
+	console.log('Purple Button Pushed');
    try {
 	   //Example of an xapi xCommand
 		xapi.Command.UserInterface.LedControl.Color.Set({ Color: 'Purple' });
