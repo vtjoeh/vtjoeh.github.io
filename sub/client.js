@@ -80,6 +80,7 @@ redButton.addEventListener('click', async function(e) {
 });
 
 //Xapi Command to set the LedControl Color to Purple
+console.log('line 83')
 const purpleButton = document.getElementById('purpleButton');
 purpleButton.addEventListener('click', async function(e) {
 	console.log('Purple Button Pushed');
