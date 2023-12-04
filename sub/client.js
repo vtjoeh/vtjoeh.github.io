@@ -76,7 +76,8 @@ yellowButton.addEventListener('click', async function(e) {
 //Xapi Command to set the LedControl Color to Red
 const redButton = document.getElementById('redButton');
 redButton.addEventListener('click', async function(e) {
-	console.log('Purple Button Pushed'); 
+	console.log('Red Button Pushed'); 
+	updateTextBox({"buttonPushed" : "red"}); 
    try {
 	   //Example of an xapi xCommand
 		xapi.Command.UserInterface.LedControl.Color.Set({ Color: 'Red' });
@@ -188,8 +189,13 @@ function setupSubscriptions() {
 updateTextBox("loaded"); 
 function updateTextBox(lastStatus){
 	let text = JSON.stringify(lastStatus, null, 10); 
-	document.getElementById('statusUpdate').innerHTML += "<br/>"; 
-	document.getElementById('statusUpdate').textContent = text + document.getElementById('statusUpdate').textContent; 
+	let statusUpdateNode = document.getElementById('statusUpdate');
+	
+	statusUpdateNode.insertBefore(document.createElement("br"), statusUpdateNode.firstChild);	
+	
+	let node = document.createTextNode(text); 
+
+	statusUpdateNode.insertBefore(node, statusUpdateNode.firstChild); 
 }
 
 function statusSubscription(){
