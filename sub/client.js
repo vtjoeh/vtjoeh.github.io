@@ -211,6 +211,8 @@ function getQueryString() {
 
 }
 
+getQueryString(); 
+
 function statusSubscription(){
 	xapi.Status.SystemUnit.on(lastStatus=>{
 		console.log('lastStatus', lastStatus); 
