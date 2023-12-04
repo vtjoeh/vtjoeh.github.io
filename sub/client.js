@@ -199,8 +199,35 @@ function updateTextBox(lastStatus){
 }
 
 function statusSubscription(){
-	xapi.Status.on(lastStatus=>{
+	xapi.Status.SystemUnit.on(lastStatus=>{
 		console.log('lastStatus', lastStatus); 
 		updateTextBox(lastStatus); 
-	})
+	}); 
+
+	xapi.Status.Bookings.on(lastStatus=>{
+		console.log('lastStatus', lastStatus); 
+		updateTextBox(lastStatus); 
+	});
+
+	xapi.Status.UserInterface.on(lastStatus=>{
+		console.log('lastStatus', lastStatus); 
+		updateTextBox(lastStatus); 
+	}); 
+
+	xapi.Status.Peripherals.on(lastStatus=>{
+		console.log('lastStatus', lastStatus); 
+		updateTextBox(lastStatus); 
+	}); 
+
+	xapi.Status.RoomAnalytics.on(lastStatus=>{
+		console.log('lastStatus', lastStatus); 
+		updateTextBox(lastStatus); 
+	}); 
+
+	xapi.Config.on(configUpdate=>{
+		console.log('configUpdate: ', configUpdate); 
+		updateTextBox(configUpdate); 
+	}); 
+
+
 }
