@@ -6,6 +6,8 @@
 console.log('loading.....'); 
 
 
+
+
 async function init() {
 	try {
 		xapi = await getXAPI();
@@ -196,6 +198,17 @@ function updateTextBox(lastStatus){
 	let node = document.createTextNode(text); 
 
 	statusUpdateNode.insertBefore(node, statusUpdateNode.firstChild); 
+}
+
+function getQueryString() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has('test')) {
+		let test = urlParams.get('test');
+		updateTextBox(test); 
+	}
+
 }
 
 function statusSubscription(){
