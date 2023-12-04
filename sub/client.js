@@ -181,11 +181,11 @@ function setupSubscriptions() {
 
 function updateTextBox(lastStatus){
 	let text = JSON.stringify(lastStatus); 
-	
+	document.getElementById('statusUpdate').textContent += text; 
 }
 
 function statusSubscription(){
 	xapi.Status.on()(lastStatus=>{
-
+		updateTextBox(lastStatus); 
 	})
 }
