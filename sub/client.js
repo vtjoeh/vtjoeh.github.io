@@ -188,7 +188,8 @@ function setupSubscriptions() {
 updateTextBox("loaded"); 
 function updateTextBox(lastStatus){
 	let text = JSON.stringify(lastStatus, null, 10); 
-	document.getElementById('statusUpdate').textContent += text; 
+	document.getElementById('statusUpdate').innerHTML += "<br/>"; 
+	document.getElementById('statusUpdate').textContent = text + document.getElementById('statusUpdate').textContent; 
 }
 
 function statusSubscription(){
