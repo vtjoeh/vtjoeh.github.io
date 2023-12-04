@@ -184,8 +184,11 @@ function updateTextBox(lastStatus){
 	document.getElementById('statusUpdate').textContent += text; 
 }
 
+console.log('loading.....'); 
+
 function statusSubscription(){
 	xapi.Status.on()(lastStatus=>{
+		console.log('lastStatus', lastStatus); 
 		updateTextBox(lastStatus); 
 	})
 }
