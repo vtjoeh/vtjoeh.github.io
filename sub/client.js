@@ -184,13 +184,14 @@ function setupSubscriptions() {
 	});
 }
 
+updateTextBox("loaded"); 
 function updateTextBox(lastStatus){
-	let text = JSON.stringify(lastStatus); 
-	// document.getElementById('statusUpdate').textContent += text; 
+	let text = JSON.stringify(lastStatus, null, 10); 
+	document.getElementById('statusUpdate').textContent += text; 
 }
 
 function statusSubscription(){
-	xapi.Status.on()(lastStatus=>{
+	xapi.Status.on(lastStatus=>{
 		console.log('lastStatus', lastStatus); 
 		updateTextBox(lastStatus); 
 	})
