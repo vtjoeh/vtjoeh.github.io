@@ -1,6 +1,11 @@
 //Initialize the xAPI on page load to make the xapi object available.
 //Creating a persistent Cookie with navigator ID is not necessary, 
 //just done as an example for how to distinguish between unique navigators.
+
+
+console.log('loading.....'); 
+
+
 async function init() {
 	try {
 		xapi = await getXAPI();
@@ -181,10 +186,8 @@ function setupSubscriptions() {
 
 function updateTextBox(lastStatus){
 	let text = JSON.stringify(lastStatus); 
-	document.getElementById('statusUpdate').textContent += text; 
+	// document.getElementById('statusUpdate').textContent += text; 
 }
-
-console.log('loading.....'); 
 
 function statusSubscription(){
 	xapi.Status.on()(lastStatus=>{
