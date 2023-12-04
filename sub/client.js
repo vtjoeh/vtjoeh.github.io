@@ -149,6 +149,7 @@ function getCurrent() {
 
 function setLedColor(color) {
 	console.log("COLOR: " + color)
+	updateTextBox({"updateColor" : color}); 
 	switch(color) {
 		case 'Green':
 		case 'Yellow':
