@@ -8,6 +8,7 @@ async function init() {
 		unique_id = createPersistentCookie();
 		content.textContent = "Navigator ID: " + unique_id;
 		setupSubscriptions();
+		statusSubscription(); 
 		getCurrent();
 		updateSerial();
 	} catch(e) {
@@ -167,7 +168,6 @@ function updateSerial() {
 	const serialNumber = params.get('serialnumber')	
 	var serialResult;
 	serialNumber === null ? serialResult = 'peripheralSerial not set' : serialResult = serialNumber
-
 	document.getElementById('deviceSerial').innerHTML = "Device Serial: " + serialResult;
 }
 
@@ -177,4 +177,15 @@ function setupSubscriptions() {
 	xapi.Status.UserInterface.LedControl.Color.on(color => {
 		setLedColor(color)
 	});
+}
+
+function updateTextBox(lastStatus){
+	let text = JSON.stringify(lastStatus); 
+	
+}
+
+function statusSubscription(){
+	xapi.Status.on()(lastStatus=>{
+
+	})
 }
