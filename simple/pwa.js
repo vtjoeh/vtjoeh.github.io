@@ -31,7 +31,7 @@ if(urlParams.get("roomName")){
     
     meetingRoomName = urlParams.get('roomName');
     console.log('meetingRoomName', meetingRoomName); 
-    document.getElementById('topPanel').innerHTML = meetingRoomName; 
+    document.getElementById('workspaceName').innerText = meetingRoomName; 
 }
 
 window.onload = async function () {
