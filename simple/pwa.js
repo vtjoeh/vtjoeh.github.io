@@ -30,8 +30,6 @@ if (urlParams.get("metricOnly")) {
 window.onload = async function () {
   console.log("initizing");
   init();
-  updateWeather();
-  setInterval(updateWeather, 10 * 1000 * 60);
 };
 
 async function init() {
