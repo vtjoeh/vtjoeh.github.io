@@ -203,7 +203,7 @@ function updateTextBox(lastStatus){
 function getQueryString() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-
+	console.log('line 206'); 
     if (urlParams.has('test')) {
 		let test = urlParams.get('test');
 		updateTextBox(test); 
