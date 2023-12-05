@@ -9,7 +9,7 @@ const ambientNoise = document.getElementById("roomSound");
 // let xapi;
 let meetingRoomName = "Testing";
 let userName = "";
-let capacity = 10;
+let capacity = 999;
 let roomNavigator = null;
 let occupied = false;
 let booked = false;
@@ -28,12 +28,12 @@ if (urlParams.get("metricOnly")) {
 }
 
 window.onload = async function () {
-  console.log("initizing");
   init();
 };
 
 async function init() {
   try { 
+    console.log("initializing");
     xapi = await getXAPI();
     // xapi = await window.getXAPI();
 
@@ -60,6 +60,10 @@ async function getInitial() {
     capacity = roomCapacity;
   });
 
+  xapi.Status.UserInterface.LedControl.Color.get().then((color)=>{
+    ledUpdated(color); 
+  }); 
+
   xapi.Status.RoomAnalytics.PeopleCount.Current.get().then((currentCount) => {
     console.log("RoomCount Current:", currentCount);
     if (currentCount == "-1") currentCount = 0;
@@ -76,22 +80,19 @@ async function getInitial() {
 
 async function updateRoomStatus() {
   console.log("Updating Room Status");
-  if (peopleCountCurrent > 0) {
-    displayOccupied();
-    return;
-  }
+//   if (peopleCountCurrent > 0) {
+//     displayOccupied();
+//     return;
+//   }
 
-  if (hotdesking) {
-    displayReserved();
-    return;
-  }
 
-  if (booked) {
-    displayBooked();
-    return;
-  }
 
-  displayAvailable();
+//   if (booked) {
+//     displayBooked();
+//     return;
+//   }
+
+//   displayAvailable();
 }
 
 // "/Command/UserInterface/LedControl/Color/Set",
@@ -129,8 +130,33 @@ async function updateRoomStatus() {
 // "/Status/RoomAnalytics/Engagement/CloseProximity",
 // "/Status/SystemUnit/ProductId",
 
+
+function ledUpdated(color){
+    switch(color) {
+		case 'Green':
+            displayAvailable(); 
+            break; 
+		case 'Yellow':
+            displayBooked();
+            break; 
+		case 'Red':
+            displayOccupied(); 
+            break; 
+		case 'Blue':
+		case 'Purple':
+		case 'Orange':
+		case 'Off':
+		default: 
+			console.log("Unexpected color")
+	}
+}
+
 function subscribe() {
   console.log("Subscribing to status changes");
+
+  xapi.Status.UserInterface.LedControl.Color.on((color)=>{
+        ledUpdated(color); 
+    }); 
 
   xapi.Status.Bookings.Availability.Status.on((status) =>
     console.log("Booking Status Changed to:", status)
@@ -144,7 +170,7 @@ function subscribe() {
     console.log("RoomCount Capacity changed to:", roomCapacity);
     if (roomCapacity == "-1") roomCapacity = 1;
     capacity = roomCapacity;
-    updateRoomStatus();
+    // updateRoomStatus();
   });
 
   xapi.Status.RoomAnalytics.PeopleCount.Current.on((currentCount) => {
@@ -152,7 +178,7 @@ function subscribe() {
     if (currentCount == "-1") currentCount = 0;
     peopleCount.innerHTML = `${currentCount}/${capacity}`;
     peopleCountCurrent = currentCount;
-    updateRoomStatus();
+    // updateRoomStatus();
   });
 }
 
@@ -208,9 +234,9 @@ function updateTemperature(ambientTemp) {
 
 function pollStatus() {
   console.log("Polling Status");
-  // xapi.Status.RoomAnalytics.AmbientTemperature.get()
-  //   .then((ambientTemp) => updateTemperature(ambientTemp))
-  //   .catch((error) => console.log("Unable to Ambient Temperature"));
+  xapi.Status.RoomAnalytics.AmbientTemperature.get()
+    .then((ambientTemp) => updateTemperature(ambientTemp))
+    .catch((error) => console.log("Unable to Ambient Temperature", error));
   
   getTemperature();
 
