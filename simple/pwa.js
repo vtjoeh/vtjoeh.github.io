@@ -5,10 +5,8 @@ const workspaceName = document.getElementById("workspaceName");
 const peopleCount = document.getElementById("peopleCount");
 const roomTemp = document.getElementById("roomTemp");
 const ambientNoise = document.getElementById("roomSound");
-const outsideCondititions = document.getElementById("outsideCondititions");
-const cityName = document.getElementById("cityName");
 
-let xapi;
+// let xapi;
 let meetingRoomName = "Testing";
 let userName = "";
 let capacity = 10;
@@ -21,6 +19,8 @@ let metricOnly = false;
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+
+console.log('loading'); 
 
 if (urlParams.get("metricOnly")) {
   console.log('Displaying Metric Only')
@@ -35,12 +35,13 @@ window.onload = async function () {
 };
 
 async function init() {
-  try {
-    xapi = await window.getXAPI();
+  try { 
+    xapi = await getXAPI();
+    // xapi = await window.getXAPI();
     console.log("Connected to Webex Device");
     xapi.Config.UserInterface.LedControl.Mode.set("Manual")
       .then((result) => console.log("Led Control set to manual", result))
-      .catch((error) => console.log("Unable to set LedControl to manual"));
+      .catch((error) => console.log("Unable to set LedControl to manual", error));
     console.log("testing");
     getInitial();
     subscribe();
