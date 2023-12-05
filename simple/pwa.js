@@ -50,7 +50,6 @@ async function init() {
 
 async function getInitial() {
   console.log("Getting Initial Values");
-  checkHotdeskState();
   pollStatus();
   setInterval(pollStatus, 1 * 1000 * 60);
 
@@ -136,8 +135,6 @@ function subscribe() {
     console.log("Booking Status Changed to:", status)
   );
 
-  xapi.Status.UserInterface.ContactInfo.Name.on((value) => checkHotdeskState());
-
   xapi.Status.Bookings.Availability.TimeStamp.on((status) =>
     console.log("Booking TimeStamp Changed to:", status)
   );
@@ -156,37 +153,6 @@ function subscribe() {
     peopleCountCurrent = currentCount;
     updateRoomStatus();
   });
-}
-
-async function checkHotdeskState() {
-  const status = await xapi.Status.get();
-  if (status.hasOwnProperty("Webex")) {
-    if (status.Webex.DevicePersonalization.Accounts.length == 2) {
-      console.log("Device is in Hostdesking mode and reserved by ");
-      console.log(status.Webex.DevicePersonalization.Accounts);
-      hotdesking = true;
-      userName = status.Webex.DevicePersonalization.Accounts[1].DisplayName;
-      workspaceName.innerHTML =
-        status.Webex.DevicePersonalization.Accounts[0].DisplayName;
-      console.log("Device is in Hostdesking mode and reserved by " + userName);
-      updateRoomStatus();
-      return;
-    }
-
-    console.log("Device is in Hostdesking mode and isn't reserved");
-
-    hotdesking = false;
-    workspaceName.innerHTML =
-      status.Webex.DevicePersonalization.Accounts[0].DisplayName;
-    updateRoomStatus();
-    return;
-  } else {
-    console.log("Device has switched to Hostdesking");
-    hotdesking = false;
-    workspaceName.innerHTML = status.Webex.Accounts[0].DisplayName;
-  }
-
-  updateRoomStatus();
 }
 
 function displayOccupied() {
