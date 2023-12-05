@@ -27,6 +27,11 @@ if (urlParams.get("metricOnly")) {
     metricOnly = true;
 }
 
+if(urlParams.get("roomName")){
+    meetingRoomName = urlParams.get('roomName');
+    document.getElementById('meetingRoomName').innerHTML = meetingRoomName; 
+}
+
 window.onload = async function () {
     init();
 };
