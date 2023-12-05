@@ -30,8 +30,9 @@ if (urlParams.get("metricOnly")) {
 if(urlParams.get("roomName")){
     
     meetingRoomName = urlParams.get('roomName');
-    console.log('meetingRoomName', meetingRoomName); 
+    console.log('the meetingRoomName:', meetingRoomName); 
     document.getElementById('workspaceName').innerText = meetingRoomName; 
+    console.log('line 35'); 
 }
 
 window.onload = async function () {
