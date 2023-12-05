@@ -36,11 +36,12 @@ async function init() {
   try { 
     xapi = await getXAPI();
     // xapi = await window.getXAPI();
+
     console.log("Connected to Webex Device");
-    xapi.Config.UserInterface.LedControl.Mode.set("Manual")
-      .then((result) => console.log("Led Control set to manual", result))
-      .catch((error) => console.log("Unable to set LedControl to manual", error));
-    console.log("testing");
+    xapi.Config.UserInterface.LedControl.Mode.set("Auto")
+      .then((result) => console.log("Led Control set to Auto", result))
+      .catch((error) => console.log("Unable to set LedControl to Auto", error));
+    console.log("testing line 44");
     getInitial();
     subscribe();
   } catch (e) {
@@ -163,7 +164,7 @@ function displayOccupied() {
   bottomPanel.style.color = "white";
 
   //Green, Yellow, Red, Off
-  xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Red" });
+  // xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Red" });
 }
 
 function displayBooked() {
@@ -172,7 +173,7 @@ function displayBooked() {
   bottomPanel.style.backgroundColor = "orange";
   bottomPanel.style.color = "white";
   roomStatus.innerHTML = "Booked";
-  xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Yellow" });
+  // xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Yellow" });
 }
 
 function displayReserved() {
@@ -181,7 +182,7 @@ function displayReserved() {
   bottomPanel.style.backgroundColor = "orange";
   bottomPanel.style.color = "white";
   roomStatus.innerHTML = `Reserved by ${userName}`;
-  xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Yellow" });
+  // xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Yellow" });
 }
 
 function displayAvailable() {
@@ -190,7 +191,7 @@ function displayAvailable() {
   bottomPanel.style.backgroundColor = "green";
   bottomPanel.style.color = "white";
   roomStatus.innerHTML = "Available";
-  xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Green" });
+  // xapi.Command.UserInterface.LedControl.Color.Set({ Color: "Green" });
 }
 
 function updateTemperature(ambientTemp) {
