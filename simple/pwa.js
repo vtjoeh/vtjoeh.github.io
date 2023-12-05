@@ -35,6 +35,11 @@ if(urlParams.get("roomName")){
     console.log('line 35'); 
 }
 
+if(urlParams.get("centerLogo")){
+    let centerLogo = urlParams.get('centerLogo'); 
+    document.getElementById("centerLogo").src = decodeURI(centerLogo); 
+}
+
 window.onload = async function () {
     init();
 };
