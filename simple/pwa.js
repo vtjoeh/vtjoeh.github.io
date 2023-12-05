@@ -132,6 +132,7 @@ async function updateRoomStatus() {
 
 
 function ledUpdated(color){
+    console.log('LED color updated to: ', color); 
     switch(color) {
 		case 'Green':
             displayAvailable(); 
