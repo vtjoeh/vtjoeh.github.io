@@ -47,7 +47,7 @@ window.onload = async function () {
 async function init() {
     try {
         console.log("initializing");
-        xapi = await getXAPI();
+        xapi = await window.getXAPI();
         // xapi = await window.getXAPI();
 
         console.log("Connected to Webex Device");
