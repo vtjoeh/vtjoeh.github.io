@@ -49,7 +49,11 @@ async function init() {
         console.log("initializing");
         xapi = await window.getXAPI();
         // xapi = await window.getXAPI();
-
+        xapi.Status.get().then((result)=>{
+            console.log('result: ', JSON.stringify(result,null,10)); 
+        }).catch((error)=>{
+            console.log('error', error); 
+        }); 
         console.log("Connected to Webex Device");
         xapi.Config.UserInterface.LedControl.Mode.set("Auto")
             .then((result) => console.log("Led Control set to Auto", result))
