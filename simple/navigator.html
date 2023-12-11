@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple PWA</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+
+    <style>
+      html, body {touch-action: none;}
+      #sidebar {
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+
+        background-image: url("https://cdn.glitch.global/0ea3fa3d-0dda-4202-bb67-bc4344db0595/3a7160de-e03f-495c-8ffa-b7cadeb64331.chicago.jpg?v=1699477595874");
+      }
+
+      #main {
+      }
+
+      .status {
+        background-color: coral;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="columns is-gapless">
+      <div
+        class="column is-one-fifth is-flex is-flex-direction-column is-justify-content-end"
+        style="height: 100vh"
+        id="sidebar"
+      >
+        <div class="pl-3 pb-3">
+          <p
+            class="title has-text-white"
+            id="outsideTemp"
+            style="font-size: 2.5rem;"
+          >
+            
+          </p>
+          <p
+            class="title has-text-white"
+            id="outsideCondititions"
+            style="font-size: 2.5rem;"
+          >
+        
+          </p>
+          
+          <p
+            class="title has-text-white"
+            id="cityName"
+            style="font-size: 2.5rem;"
+          >
+            
+          </p>
+          
+        </div>
+      </div>
+      <div class="column">
+        <div class="columns is-gapless is-multiline">
+          <div
+            class="status column is-12 is-flex is-align-items-center is-justify-content-end"
+            style="height: 15vh"
+            id="topPanel"
+          >
+            <p
+              class="title pr-6 has-text-white"
+              id="workspaceName"
+              style="font-size: 3.5rem"
+            >
+              My Meeting Room
+            </p>
+          </div>
+          <div
+            class="column is-12 has-background-warning-light"
+            style="height: 70vh"
+            id="main"
+          >
+            <div class="columns pt-4 is-gapless is-flex is-align-content-center">
+              <div class="column is-flex is-flex-direction-row is-justify-content-center">
+                <img width="40px" src="https://cdn.glitch.global/0ea3fa3d-0dda-4202-bb67-bc4344db0595/contact-group_20.svg?v=1699892354413">
+                  <p class="title pl-2" id="peopleCount">?/10</p>
+              </div>
+              <!-- <div class="column is-flex is-flex-direction-row is-justify-content-center">
+                <img width="40px" src="https://cdn.glitch.global/0ea3fa3d-0dda-4202-bb67-bc4344db0595/temperature_14.svg?v=1699892354275">
+                  <p class="title pl-2" id="roomTemp"></p>
+              </div>
+              <div class="column is-flex is-flex-direction-row is-justify-content-center">
+                <img width="40px" src="https://cdn.glitch.global/0ea3fa3d-0dda-4202-bb67-bc4344db0595/noise-removal_12.svg?v=1699892354133">
+                  <p class="title pl-2" id="roomSound"></p>
+              </div> -->
+           
+            </div>
+            <div class="columns is-gapless">
+              <div class="column is-12 is-flex is-justify-content-center">
+                <img id="centerLogo"
+                  src="https://cdn.glitch.global/0ea3fa3d-0dda-4202-bb67-bc4344db0595/Webex%20Logo%20320x320.png?v=1699910131914"
+                   width="600"
+                     />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="status column is-12 is-flex is-align-items-center is-justify-content-end"
+            style="height: 15vh"
+            id="bottomPanel"
+          >
+<!--             <button class="button is-outlined" onclick="window.location.reload();">Reload</button> -->
+            <p
+              class="title pr-6 has-text-white"
+              id="roomStatus"
+              style="font-size: 4rem"
+            >
+              Occupied
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="pwa.js"></script>
+  </body>
+</html>
