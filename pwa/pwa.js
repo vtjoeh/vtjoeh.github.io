@@ -325,4 +325,13 @@ function inRoomNavigator(xapi) {
         });
 }
 
+statusSubscription(); 
+
+function statusSubscription(){
+
+    xapi.Status.RoomAnalytics.PeopleCount.Current.on(peopleCount=>{
+        console.log('peopleCount', peopleCount); 
+    }); 
+
+}
 
