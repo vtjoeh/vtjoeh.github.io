@@ -40,6 +40,8 @@ if(urlParams.get("centerLogo")){
     document.getElementById("centerLogo").src = decodeURI(centerLogo); 
 }
 
+init(); 
+
 window.onload = async function () {
     init();
 };
