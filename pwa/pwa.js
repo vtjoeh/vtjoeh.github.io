@@ -47,6 +47,7 @@ window.onload = async function () {
 };
 
 async function init() {
+    console.log('line 50'); 
     try {
         console.log("initializing");
         xapi = await window.getXAPI();
